@@ -1,0 +1,10 @@
+c:\Users\shrieter6\Emailer\bin\Debug\netcoreapp2.0\Emailer.deps.json
+c:\Users\shrieter6\Emailer\bin\Debug\netcoreapp2.0\Emailer.runtimeconfig.json
+c:\Users\shrieter6\Emailer\bin\Debug\netcoreapp2.0\Emailer.runtimeconfig.dev.json
+c:\Users\shrieter6\Emailer\bin\Debug\netcoreapp2.0\Emailer.dll
+c:\Users\shrieter6\Emailer\bin\Debug\netcoreapp2.0\Emailer.pdb
+c:\Users\shrieter6\Emailer\obj\Debug\netcoreapp2.0\Emailer.csproj.CoreCompileInputs.cache
+c:\Users\shrieter6\Emailer\obj\Debug\netcoreapp2.0\Emailer.AssemblyInfoInputs.cache
+c:\Users\shrieter6\Emailer\obj\Debug\netcoreapp2.0\Emailer.AssemblyInfo.cs
+c:\Users\shrieter6\Emailer\obj\Debug\netcoreapp2.0\Emailer.dll
+c:\Users\shrieter6\Emailer\obj\Debug\netcoreapp2.0\Emailer.pdb
