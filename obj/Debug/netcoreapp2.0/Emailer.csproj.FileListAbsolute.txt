@@ -8,3 +8,13 @@ c:\Users\shrieter6\Emailer\obj\Debug\netcoreapp2.0\Emailer.AssemblyInfoInputs.ca
 c:\Users\shrieter6\Emailer\obj\Debug\netcoreapp2.0\Emailer.AssemblyInfo.cs
 c:\Users\shrieter6\Emailer\obj\Debug\netcoreapp2.0\Emailer.dll
 c:\Users\shrieter6\Emailer\obj\Debug\netcoreapp2.0\Emailer.pdb
+D:\Projects\POC\Email Sender\Repository\ESPL.Emailer\bin\Debug\netcoreapp2.0\Emailer.deps.json
+D:\Projects\POC\Email Sender\Repository\ESPL.Emailer\bin\Debug\netcoreapp2.0\Emailer.runtimeconfig.json
+D:\Projects\POC\Email Sender\Repository\ESPL.Emailer\bin\Debug\netcoreapp2.0\Emailer.runtimeconfig.dev.json
+D:\Projects\POC\Email Sender\Repository\ESPL.Emailer\bin\Debug\netcoreapp2.0\Emailer.dll
+D:\Projects\POC\Email Sender\Repository\ESPL.Emailer\bin\Debug\netcoreapp2.0\Emailer.pdb
+D:\Projects\POC\Email Sender\Repository\ESPL.Emailer\obj\Debug\netcoreapp2.0\Emailer.csproj.CoreCompileInputs.cache
+D:\Projects\POC\Email Sender\Repository\ESPL.Emailer\obj\Debug\netcoreapp2.0\Emailer.AssemblyInfoInputs.cache
+D:\Projects\POC\Email Sender\Repository\ESPL.Emailer\obj\Debug\netcoreapp2.0\Emailer.AssemblyInfo.cs
+D:\Projects\POC\Email Sender\Repository\ESPL.Emailer\obj\Debug\netcoreapp2.0\Emailer.dll
+D:\Projects\POC\Email Sender\Repository\ESPL.Emailer\obj\Debug\netcoreapp2.0\Emailer.pdb
