@@ -1,1 +1,1 @@
-This is Email Sender project based on .net core 2 framework
+This is Email Sender project based on .net core 2 framework.
