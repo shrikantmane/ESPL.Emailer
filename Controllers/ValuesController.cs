@@ -40,7 +40,7 @@ I just wanted to let you know that Monica and I were going to go play some paint
 				client.AuthenticationMechanisms.Remove ("XOAUTH2");
 
 				// Note: only needed if the SMTP server requires authentication
-				client.Authenticate ("bhartishinde01@gmail.com", "iamstrong");
+				client.Authenticate ("myofficialemail160@gmail.com", "espl@123");
 
 				client.Send (message);
 				client.Disconnect (true);
