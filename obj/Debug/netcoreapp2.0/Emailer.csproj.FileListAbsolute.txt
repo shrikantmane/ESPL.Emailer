@@ -18,3 +18,13 @@ D:\Projects\POC\Email Sender\Repository\ESPL.Emailer\obj\Debug\netcoreapp2.0\Ema
 D:\Projects\POC\Email Sender\Repository\ESPL.Emailer\obj\Debug\netcoreapp2.0\Emailer.AssemblyInfo.cs
 D:\Projects\POC\Email Sender\Repository\ESPL.Emailer\obj\Debug\netcoreapp2.0\Emailer.dll
 D:\Projects\POC\Email Sender\Repository\ESPL.Emailer\obj\Debug\netcoreapp2.0\Emailer.pdb
+d:\POC\ESPL.EmailerLocalRepo\bin\Debug\netcoreapp2.0\Emailer.deps.json
+d:\POC\ESPL.EmailerLocalRepo\bin\Debug\netcoreapp2.0\Emailer.runtimeconfig.json
+d:\POC\ESPL.EmailerLocalRepo\bin\Debug\netcoreapp2.0\Emailer.runtimeconfig.dev.json
+d:\POC\ESPL.EmailerLocalRepo\bin\Debug\netcoreapp2.0\Emailer.dll
+d:\POC\ESPL.EmailerLocalRepo\bin\Debug\netcoreapp2.0\Emailer.pdb
+d:\POC\ESPL.EmailerLocalRepo\obj\Debug\netcoreapp2.0\Emailer.csproj.CoreCompileInputs.cache
+d:\POC\ESPL.EmailerLocalRepo\obj\Debug\netcoreapp2.0\Emailer.AssemblyInfoInputs.cache
+d:\POC\ESPL.EmailerLocalRepo\obj\Debug\netcoreapp2.0\Emailer.AssemblyInfo.cs
+d:\POC\ESPL.EmailerLocalRepo\obj\Debug\netcoreapp2.0\Emailer.dll
+d:\POC\ESPL.EmailerLocalRepo\obj\Debug\netcoreapp2.0\Emailer.pdb
