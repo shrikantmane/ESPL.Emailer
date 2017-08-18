@@ -19,15 +19,20 @@ namespace Emailer.Controllers
         public string send([FromBody]MailWrapper mailWrapper)
         {
             MailHelper mailHelper = new MailHelper();
+            bool emailSent = false;
+
             string[] adrs = mailWrapper.mailOptions.to.Split(',');
             if(adrs.Count() > 1)
-                mailHelper.SendMultipleEmailAsync(mailWrapper.smtpOptions,mailWrapper.mailOptions);
+                emailSent =mailHelper.SendMultipleEmail(mailWrapper.smtpOptions,mailWrapper.mailOptions);
             else
-                mailHelper.SendEmailAsync(mailWrapper.smtpOptions,mailWrapper.mailOptions);
+                emailSent =mailHelper.SendEmail(mailWrapper.smtpOptions,mailWrapper.mailOptions);
 
-          return "Email Sent!!";
+          if(emailSent)
+                 return "Email Sent!!";
+          else 
+                 return "Can not send Email";
         }
-       
+
     }
 }
 

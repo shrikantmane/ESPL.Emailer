@@ -12,10 +12,13 @@ namespace Emailer.Helper
         {
         }
 
-public async Task SendEmailAsync(
+public bool SendEmail(
             SMTPOptions smtpOpt,
            MailOptions mailOptions)
         {
+            
+             try
+                {
             if (string.IsNullOrWhiteSpace(mailOptions.to))
             {
                 throw new ArgumentException("no to address provided");
@@ -67,34 +70,40 @@ public async Task SendEmailAsync(
             {
                 try
                 {
-                    await client.ConnectAsync(
+                client.Connect(
                     smtpOpt.server,
                     smtpOpt.port,
-                    smtpOpt.useSSL)
-                    .ConfigureAwait(false);
-                }
-                catch (System.Exception)
-                {
-                   throw new ArgumentException("Can not send email.");
-                }
-                
+                    smtpOpt.useSSL);
+                               
                // Note: since we don't have an OAuth2 token, disable
                 // the XOAUTH2 authentication mechanism.
                 client.AuthenticationMechanisms.Remove("XOAUTH2");
 
-               await client.AuthenticateAsync(smtpOpt.user, smtpOpt.password)
-                        .ConfigureAwait(false);
+               client.Authenticate(smtpOpt.user, smtpOpt.password);
                 
-                await client.SendAsync(m).ConfigureAwait(false);
-                await client.DisconnectAsync(true).ConfigureAwait(false);
+                client.Send(m);
+                client.Disconnect(true);
+                return true;
+                }
+            catch (System.Exception)
+                {
+                   return false;
+                }
             }
+                }
+            catch (System.Exception)
+                {
+                   return false;
+                }
 
         }
 
-public async Task SendMultipleEmailAsync(
+public bool SendMultipleEmail(
             SMTPOptions smtpOpt,
            MailOptions mailOptions)
         {
+            try
+            {
             if (string.IsNullOrWhiteSpace(mailOptions.to))
             {
                 throw new ArgumentException("no to addresses provided");
@@ -146,30 +155,34 @@ public async Task SendMultipleEmailAsync(
             {
                 try
                 {
-                await client.ConnectAsync(
+                client.Connect(
                     smtpOpt.server,
                     smtpOpt.port,
-                    smtpOpt.useSSL).ConfigureAwait(false);
-                 }
-                catch (System.Exception)
-                {
-                   throw new ArgumentException("Can not send email.");
-                }
+                    smtpOpt.useSSL);
                 
                 // Note: since we don't have an OAuth2 token, disable
                 // the XOAUTH2 authentication mechanism.
                 client.AuthenticationMechanisms.Remove("XOAUTH2");
 
-                    await client.AuthenticateAsync(
+                     client.Authenticate(
                         smtpOpt.user,
-                        smtpOpt.password).ConfigureAwait(false);
-               
+                        smtpOpt.password);
 
-                await client.SendAsync(m).ConfigureAwait(false);
-                await client.DisconnectAsync(true).ConfigureAwait(false);
+                client.Send(m);
+                client.Disconnect(true);
+                return true;
+                }
+            catch (System.Exception)
+                {
+                   return false;
+                }
             }
-
-        }
-
+            }
+            catch (System.Exception)
+                {
+                   return false;
+                }
+    
+}
 }
 }

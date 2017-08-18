@@ -20,13 +20,18 @@ namespace Emailer.Controllers
         public string send([FromBody]EventWrapper eventWrapper)
         {
             EventHelper eventHelper = new EventHelper();
+            bool emailSent = false;
+
             string[] adrs = eventWrapper.eventOptions.to.Split(',');
             if (adrs.Count() > 1)
-                eventHelper.SendMultipleEmailAsync(eventWrapper.smtpOptions, eventWrapper.eventOptions);
+                emailSent =eventHelper.SendMultipleEmail(eventWrapper.smtpOptions, eventWrapper.eventOptions);
             else
-                eventHelper.SendEmailAsync(eventWrapper.smtpOptions, eventWrapper.eventOptions);
+                emailSent =eventHelper.SendEmail(eventWrapper.smtpOptions, eventWrapper.eventOptions);
 
-            return "Email Sent!!";
+            if(emailSent)
+                 return "Email Sent!!";
+            else 
+                 return "Can not send Email";
         }
 
     }
