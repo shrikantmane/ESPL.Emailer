@@ -61,6 +61,7 @@ namespace Emailer.Helper
             sb.AppendLine("DTEND:" + eventOptions.endTime.ToUniversalTime().ToString(DateFormat));
             sb.AppendLine("DTSTAMP:" + now);
             sb.AppendLine("UID:" + Guid.NewGuid());
+            sb.AppendLine("ORGANIZER;CN= "+ "Bharati S" + ":MAILTO:" + "bhartishinde01@gmail.com");
             sb.AppendLine("CREATED:" + now);
             sb.AppendLine("X-ALT-DESC;FMTTYPE=text/html:" + eventOptions.eventDescription);
             sb.AppendLine("LAST-MODIFIED:" + now);
@@ -164,6 +165,7 @@ namespace Emailer.Helper
             sb.AppendLine("DTEND:" + eventOptions.endTime.ToUniversalTime().ToString(DateFormat));
             sb.AppendLine("DTSTAMP:" + now);
             sb.AppendLine("UID:" + Guid.NewGuid());
+            sb.AppendLine("ORGANIZER;CN= "+ "Bharati S" + ":MAILTO:" + "bhartishinde01@gmail.com");
             sb.AppendLine("CREATED:" + now);
             sb.AppendLine("X-ALT-DESC;FMTTYPE=text/html:" + eventOptions.eventDescription);
             sb.AppendLine("LAST-MODIFIED:" + now);

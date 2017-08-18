@@ -1,8 +1,17 @@
 using MailKit.Net.Smtp;
 using MimeKit;
 using System;
+using System.Net;
 using System.Threading.Tasks;
 using Emailer.Models;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 
 namespace Emailer.Helper
 {
@@ -19,27 +28,12 @@ public bool SendEmail(
             
              try
                 {
-            if (string.IsNullOrWhiteSpace(mailOptions.to))
-            {
-                throw new ArgumentException("no to address provided");
-            }
-
-            if (string.IsNullOrWhiteSpace(mailOptions.from))
-            {
-                throw new ArgumentException("no from address provided");
-            }
-
-            if (string.IsNullOrWhiteSpace(mailOptions.subject))
-            {
-                throw new ArgumentException("no subject provided");
-            }
-
             var hasPlainText = !string.IsNullOrWhiteSpace(mailOptions.plainTextMessage);
             var hasHtml = !string.IsNullOrWhiteSpace(mailOptions.htmlMessage);
-            if (!hasPlainText && !hasHtml)
-            {
-                throw new ArgumentException("no message provided");
-            }
+            // if (!hasPlainText && !hasHtml)
+            // {
+            //     throw new ArgumentException("no message provided");
+            // }
 
             var m = new MimeMessage();
           
@@ -79,19 +73,26 @@ public bool SendEmail(
                 // the XOAUTH2 authentication mechanism.
                 client.AuthenticationMechanisms.Remove("XOAUTH2");
 
+                try
+                {
                client.Authenticate(smtpOpt.user, smtpOpt.password);
+                }
+            catch (System.Exception ex)
+                {
+                   throw new ArgumentException("Authentication Failed");
+                }
                 
                 client.Send(m);
                 client.Disconnect(true);
                 return true;
                 }
-            catch (System.Exception)
+            catch (System.Exception ex)
                 {
                    return false;
                 }
             }
                 }
-            catch (System.Exception)
+            catch (System.Exception ex)
                 {
                    return false;
                 }
@@ -104,27 +105,13 @@ public bool SendMultipleEmail(
         {
             try
             {
-            if (string.IsNullOrWhiteSpace(mailOptions.to))
-            {
-                throw new ArgumentException("no to addresses provided");
-            }
-
-            if (string.IsNullOrWhiteSpace(mailOptions.from))
-            {
-                throw new ArgumentException("no from address provided");
-            }
-
-            if (string.IsNullOrWhiteSpace(mailOptions.subject))
-            {
-                throw new ArgumentException("no subject provided");
-            }
 
             var hasPlainText = !string.IsNullOrWhiteSpace(mailOptions.plainTextMessage);
             var hasHtml = !string.IsNullOrWhiteSpace(mailOptions.htmlMessage);
-            if (!hasPlainText && !hasHtml)
-            {
-                throw new ArgumentException("no message provided");
-            }
+            // if (!hasPlainText && !hasHtml)
+            // {
+            //     throw new ArgumentException("no message provided");
+            // }
 
             var m = new MimeMessage();
             m.From.Add(new MailboxAddress("", mailOptions.from));
@@ -172,17 +159,75 @@ public bool SendMultipleEmail(
                 client.Disconnect(true);
                 return true;
                 }
-            catch (System.Exception)
+            catch (System.Exception ex)
                 {
                    return false;
                 }
             }
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
                 {
                    return false;
                 }
     
 }
+
+
+public MimeMessage generateMessage(MailOptions mailOptions)
+        {
+            
+            var m = new MimeMessage();
+             try
+                {
+            var hasPlainText = !string.IsNullOrWhiteSpace(mailOptions.plainTextMessage);
+            var hasHtml = !string.IsNullOrWhiteSpace(mailOptions.htmlMessage);
+
+          
+            m.From.Add(new MailboxAddress("", mailOptions.from));
+            if(!string.IsNullOrWhiteSpace(mailOptions.replyTo))
+            {
+                m.ReplyTo.Add(new MailboxAddress("", mailOptions.replyTo));
+            }
+
+            string[] adrs = mailOptions.to.Split(',');
+            if(adrs.Count() > 1)
+            {
+            foreach (string item in adrs)
+            {
+                if (!string.IsNullOrEmpty(item)) { m.To.Add(new MailboxAddress("", item)); ; }
+            }
+            }
+            else if(adrs.Count() == 1)
+            {
+                m.To.Add(new MailboxAddress("", mailOptions.to));
+            }
+
+            m.Subject = mailOptions.subject;
+
+            m.Importance = MessageImportance.Normal;
+
+            BodyBuilder bodyBuilder = new BodyBuilder();
+            if(hasPlainText)
+            {
+                bodyBuilder.TextBody = mailOptions.plainTextMessage;
+            }
+
+            if (hasHtml)
+            {
+                bodyBuilder.HtmlBody = mailOptions.htmlMessage;
+            }
+
+            m.Body = bodyBuilder.ToMessageBody();
+           
+            return m;
+                }
+            catch (System.Exception ex)
+                {
+                   return null;
+                }
+return m;
+        }
+
+
 }
 }
