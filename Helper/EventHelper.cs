@@ -3,8 +3,6 @@ using MimeKit;
 using System;
 using System.Threading.Tasks;
 using Emailer.Models;
-// using System.Text.StringBuilder;
-// using System.IO.MemoryStream;
 
 namespace Emailer.Helper
 {
@@ -43,9 +41,7 @@ namespace Emailer.Helper
             m.To.Add(new MailboxAddress("", eventOptions.to));
             m.Subject = eventOptions.subject;
 
-            //m.Importance = MessageImportance.Normal;
-            //Header h = new Header(HeaderId.Precedence, "Bulk");
-            //m.Headers.Add()
+             m.Importance = MessageImportance.Normal;
 
             BodyBuilder bodyBuilder = new BodyBuilder();
 
@@ -94,17 +90,12 @@ namespace Emailer.Helper
                     throw new ArgumentException("Can not send email.");
                 }
 
-
                 // Note: since we don't have an OAuth2 token, disable
                 // the XOAUTH2 authentication mechanism.
                 client.AuthenticationMechanisms.Remove("XOAUTH2");
 
-                // Note: only needed if the SMTP server requires authentication
-                // if(smtpOpt.RequiresAuthentication)
-                // {
                 await client.AuthenticateAsync(smtpOpt.user, smtpOpt.password)
                     .ConfigureAwait(false);
-                //}
 
                 await client.SendAsync(m).ConfigureAwait(false);
                 await client.DisconnectAsync(true).ConfigureAwait(false);
@@ -145,7 +136,7 @@ namespace Emailer.Helper
             }
 
             m.Subject = eventOptions.subject;
-            m.Importance = MessageImportance.High;
+            m.Importance = MessageImportance.Normal;
 
             BodyBuilder bodyBuilder = new BodyBuilder();
 
@@ -197,14 +188,10 @@ namespace Emailer.Helper
                 // the XOAUTH2 authentication mechanism.
                 client.AuthenticationMechanisms.Remove("XOAUTH2");
 
-                // Note: only needed if the SMTP server requires authentication
-                // if (smtpOptions.RequiresAuthentication)
-                // {
                 await client.AuthenticateAsync(
                     smtpOpt.user,
                     smtpOpt.password).ConfigureAwait(false);
-                //}
-
+                
                 await client.SendAsync(m).ConfigureAwait(false);
                 await client.DisconnectAsync(true).ConfigureAwait(false);
             }

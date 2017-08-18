@@ -48,9 +48,7 @@ public async Task SendEmailAsync(
             m.To.Add(new MailboxAddress("", mailOptions.to));
             m.Subject = mailOptions.subject;
 
-            //m.Importance = MessageImportance.Normal;
-            //Header h = new Header(HeaderId.Precedence, "Bulk");
-            //m.Headers.Add()
+            m.Importance = MessageImportance.Normal;
 
             BodyBuilder bodyBuilder = new BodyBuilder();
             if(hasPlainText)
@@ -80,18 +78,13 @@ public async Task SendEmailAsync(
                    throw new ArgumentException("Can not send email.");
                 }
                 
-               
-                // Note: since we don't have an OAuth2 token, disable
+               // Note: since we don't have an OAuth2 token, disable
                 // the XOAUTH2 authentication mechanism.
                 client.AuthenticationMechanisms.Remove("XOAUTH2");
 
-                // Note: only needed if the SMTP server requires authentication
-                // if(smtpOpt.RequiresAuthentication)
-                // {
-                    await client.AuthenticateAsync(smtpOpt.user, smtpOpt.password)
+               await client.AuthenticateAsync(smtpOpt.user, smtpOpt.password)
                         .ConfigureAwait(false);
-                //}
-               
+                
                 await client.SendAsync(m).ConfigureAwait(false);
                 await client.DisconnectAsync(true).ConfigureAwait(false);
             }
@@ -134,7 +127,7 @@ public async Task SendMultipleEmailAsync(
             }
 
             m.Subject = mailOptions.subject;
-            m.Importance = MessageImportance.High;
+            m.Importance = MessageImportance.Normal;
           
             BodyBuilder bodyBuilder = new BodyBuilder();
             if (hasPlainText)
@@ -162,17 +155,15 @@ public async Task SendMultipleEmailAsync(
                 {
                    throw new ArgumentException("Can not send email.");
                 }
+                
                 // Note: since we don't have an OAuth2 token, disable
                 // the XOAUTH2 authentication mechanism.
                 client.AuthenticationMechanisms.Remove("XOAUTH2");
 
-                // Note: only needed if the SMTP server requires authentication
-                // if (smtpOptions.RequiresAuthentication)
-                // {
                     await client.AuthenticateAsync(
                         smtpOpt.user,
                         smtpOpt.password).ConfigureAwait(false);
-                //}
+               
 
                 await client.SendAsync(m).ConfigureAwait(false);
                 await client.DisconnectAsync(true).ConfigureAwait(false);
