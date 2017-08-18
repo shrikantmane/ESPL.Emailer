@@ -18,12 +18,12 @@ namespace Emailer.Controllers
         [Route("api/[controller]/send")]
         public string send([FromBody]MailWrapper mailWrapper)
         {
-            EmailHelper emailHelper = new EmailHelper();
+            MailHelper mailHelper = new MailHelper();
             string[] adrs = mailWrapper.mailOptions.to.Split(',');
             if(adrs.Count() > 1)
-                emailHelper.SendMultipleEmailAsync(mailWrapper.smtpOptions,mailWrapper.mailOptions);
+                mailHelper.SendMultipleEmailAsync(mailWrapper.smtpOptions,mailWrapper.mailOptions);
             else
-                emailHelper.SendEmailAsync(mailWrapper.smtpOptions,mailWrapper.mailOptions);
+                mailHelper.SendEmailAsync(mailWrapper.smtpOptions,mailWrapper.mailOptions);
 
           return "Email Sent!!";
         }

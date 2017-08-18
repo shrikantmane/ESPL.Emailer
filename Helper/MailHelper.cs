@@ -6,9 +6,9 @@ using Emailer.Models;
 
 namespace Emailer.Helper
 {
- public class EmailHelper
+ public class MailHelper
     {
-        public EmailHelper()
+        public MailHelper()
         {
         }
 

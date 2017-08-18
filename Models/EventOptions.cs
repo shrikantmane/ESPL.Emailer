@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Emailer.Models
 {
- public class EventOptions
+ public class EventOptions : BasicMailOptions
     {
         public string eventName { get; set; }
         public DateTime startTime { get; set; }
