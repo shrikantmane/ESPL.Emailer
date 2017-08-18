@@ -33,13 +33,6 @@ namespace Emailer.Helper
                 throw new ArgumentException("no subject provided");
             }
 
-            // var hasPlainText = !string.IsNullOrWhiteSpace(mailOptions.plainTextMessage);
-            // var hasHtml = !string.IsNullOrWhiteSpace(mailOptions.htmlMessage);
-            // if (!hasPlainText && !hasHtml)
-            // {
-            //     throw new ArgumentException("no message provided");
-            // }
-
             var m = new MimeMessage();
 
             m.From.Add(new MailboxAddress("", eventOptions.from));
@@ -55,17 +48,6 @@ namespace Emailer.Helper
             //m.Headers.Add()
 
             BodyBuilder bodyBuilder = new BodyBuilder();
-            // if(hasPlainText)
-            // {
-            //     bodyBuilder.TextBody = mailOptions.plainTextMessage;
-            // }
-
-            // if (hasHtml)
-            // {
-            //     bodyBuilder.HtmlBody = mailOptions.htmlMessage;
-            // }
-
-
 
             // //create ics file for event
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
