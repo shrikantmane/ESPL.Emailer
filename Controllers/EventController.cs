@@ -16,8 +16,8 @@ namespace Emailer.Controllers
     public class EventController : Controller
     {
         [HttpPost]
-        [Route("api/[controller]/eventsend")]
-        public string eventsend([FromBody]EventWrapper eventWrapper)
+        [Route("api/[controller]/send")]
+        public string send([FromBody]EventWrapper eventWrapper)
         {
             EventHelper eventHelper = new EventHelper();
             string[] adrs = eventWrapper.mailOptions.to.Split(',');
