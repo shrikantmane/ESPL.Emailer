@@ -187,17 +187,45 @@ namespace Emailer.Helper
                     m.ReplyTo.Add(new MailboxAddress("", mailOptions.replyTo));
                 }
 
-                string[] adrs = mailOptions.to.Split(',');
-                if (adrs.Count() > 1)
+//'to' users addition
+                string[] toAdrs = mailOptions.to.Split(',');
+                if (toAdrs.Count() > 1)
                 {
-                    foreach (string item in adrs)
+                    foreach (string item in toAdrs)
                     {
                         if (!string.IsNullOrEmpty(item)) { m.To.Add(new MailboxAddress("", item)); ; }
                     }
                 }
-                else if (adrs.Count() == 1)
+                else if (toAdrs.Count() == 1)
                 {
                     m.To.Add(new MailboxAddress("", mailOptions.to));
+                }
+//'cc' users addition
+ string[] ccAdrs = mailOptions.cc.Split(',');
+                if (ccAdrs.Count() > 1)
+                {
+                    foreach (string item in ccAdrs)
+                    {
+                        if (!string.IsNullOrEmpty(item)) { m.Cc.Add(new MailboxAddress("", item)); ; }
+                    }
+                }
+                else if (ccAdrs.Count() == 1)
+                {
+                    m.Cc.Add(new MailboxAddress("", mailOptions.cc));
+                }
+
+                //'bcc' users addition
+ string[] bccAdrs = mailOptions.bcc.Split(',');
+                if (bccAdrs.Count() > 1)
+                {
+                    foreach (string item in bccAdrs)
+                    {
+                        if (!string.IsNullOrEmpty(item)) { m.Bcc.Add(new MailboxAddress("", item)); ; }
+                    }
+                }
+                else if (bccAdrs.Count() == 1)
+                {
+                    m.Bcc.Add(new MailboxAddress("", mailOptions.bcc));
                 }
 
                 m.Subject = mailOptions.subject;

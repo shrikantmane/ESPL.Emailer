@@ -231,6 +231,7 @@ namespace Emailer.Helper
                     m.ReplyTo.Add(new MailboxAddress("", eventOptions.replyTo));
                 }
 
+//'to' users addition
                 string[] adrs = eventOptions.to.Split(',');
                 if (adrs.Count() > 1)
                 {
@@ -243,6 +244,35 @@ namespace Emailer.Helper
                 {
                     m.To.Add(new MailboxAddress("", eventOptions.to));
                 }
+
+                //'cc' users addition
+ string[] ccAdrs = eventOptions.cc.Split(',');
+                if (ccAdrs.Count() > 1)
+                {
+                    foreach (string item in ccAdrs)
+                    {
+                        if (!string.IsNullOrEmpty(item)) { m.Cc.Add(new MailboxAddress("", item)); ; }
+                    }
+                }
+                else if (ccAdrs.Count() == 1)
+                {
+                    m.Cc.Add(new MailboxAddress("", eventOptions.cc));
+                }
+
+                //'bcc' users addition
+ string[] bccAdrs = eventOptions.bcc.Split(',');
+                if (bccAdrs.Count() > 1)
+                {
+                    foreach (string item in bccAdrs)
+                    {
+                        if (!string.IsNullOrEmpty(item)) { m.Bcc.Add(new MailboxAddress("", item)); ; }
+                    }
+                }
+                else if (bccAdrs.Count() == 1)
+                {
+                    m.Bcc.Add(new MailboxAddress("", eventOptions.bcc));
+                }
+
 
                 m.Subject = eventOptions.subject;
 
